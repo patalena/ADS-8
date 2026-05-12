@@ -90,10 +90,9 @@ class BST {
         collectNodes(root, freqList);
 
         std::sort(freqList.begin(), freqList.end(),
-            [](const std::pair<T, int>& a, const std::pair<T, int>& b) { 
-                return a.second > b.second; 
+            [](const std::pair<T, int>& a, const std::pair<T, int>& b) {
+                return a.second > b.second;
             });
-        
         for (const auto& entry : freqList) {
             out << entry.first << ": " << entry.second << std::endl;
         }
