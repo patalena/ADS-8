@@ -6,10 +6,11 @@
 #include <vector>
 #include <algorithm>
 #include <fstream>
+#include <utility>
 
 template <typename T>
 class BST {
-private:
+ private:
     struct Node {
         T key;
         int count;
@@ -33,10 +34,12 @@ private:
     }
 
     int depth(Node* node) const {
-        if (!node) return 0;
-        int left_depth = depth(node->left);
-        int right_depth = depth(node->right);
-        return 1 + (left_depth > right_depth ? left_depth : right_depth);
+    if (node == nullptr) {
+        return -1;
+    }
+    int leftDepth = depth(node->left);
+    int rightDepth = depth(node->right);
+    return 1 + std::max(leftDepth, rightDepth);
     }
 
     Node* search(Node* node, T value) const {
@@ -62,7 +65,7 @@ private:
         }
     }
 
-public:
+ public:
     BST() : root(nullptr) {}
 
     ~BST() {
